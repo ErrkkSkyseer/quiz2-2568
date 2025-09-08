@@ -6,7 +6,7 @@ import {
   ActionIcon,
 } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
-import { IconSun, IconMoon } from "@tabler/icons-react";
+import { IconSun, IconMoon, IconCurrencyBaht } from "@tabler/icons-react";
 
 interface HeaderComponentProps {
   opened: boolean;
@@ -17,12 +17,11 @@ export default function HeaderComponent({
   opened,
   toggle,
 }: HeaderComponentProps) {
-
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
-  
+
   const isDark = colorScheme === "dark";
-  const isMobile = useMediaQuery("(max-width: 768px)");
-  
+  const isMobile = useMediaQuery("(min-width: 56.25em)");
+
   return (
     <Group p="md" justify="space-between">
       <Group>
@@ -33,6 +32,15 @@ export default function HeaderComponent({
             aria-label="Toggle navigation"
           />
         )}
+        <ActionIcon
+          variant="filled"
+          color={isDark ? "yellow" : "blue"}
+          onClick={toggleColorScheme}
+          size="lg"
+          aria-label={isDark ? "Light mode" : "Dark mode"}
+        >
+          {<IconCurrencyBaht size={20} />}
+        </ActionIcon>
         <Text
           size="xl"
           fw={900}
